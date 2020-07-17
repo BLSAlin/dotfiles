@@ -1,0 +1,26 @@
+#!/bin/bash
+
+rofi_command="rofi -theme $HOME/.config/polybar/scripts/themes/sound_output_menu.rasi"
+
+# Title text
+title="Default sound output"
+
+# Options
+speakers=" Speakers"
+headset=" Headset"
+
+
+# Variable passed to rofi
+options="$speakers\n$headset"
+
+chosen="$(echo -e "$options" | $rofi_command -p "$title" -dmenu -selected-row 0)"
+case $chosen in
+    $speakers)
+	# pacmd set-default-sink "SINKNAME"
+        true
+	;;
+    $headset)
+	true
+        ;;
+esac
+
