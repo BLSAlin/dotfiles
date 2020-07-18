@@ -16,11 +16,12 @@ options="$speakers\n$headset"
 chosen="$(echo -e "$options" | $rofi_command -p "$title" -dmenu -selected-row 0)"
 case $chosen in
     $speakers)
-	# pacmd set-default-sink "SINKNAME"
-        true
+	pactl set-card-profile usb-Logitech_G533_Gaming_Headset-00 off 
+	pactl set-card-profile alsa_card.pci-0000_2f_00.4 output:analog-stereo
 	;;
     $headset)
-	true
+	pactl set-card-profile alsa_card.pci-0000_2f_00.4 off 
+	pactl set-card-profile usb-Logitech_G533_Gaming_Headset-00 output:analog-stereo
         ;;
 esac
 
